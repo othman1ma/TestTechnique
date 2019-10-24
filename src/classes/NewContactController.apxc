@@ -1,0 +1,15 @@
+public class NewContactController {
+	@AuraEnabled
+    public static void saveContact ( string Nom, String Prenom, string Age) {
+			system.debug('CO'+Nom+'CO'+Prenom+'CO'+Age);
+        Contact NewContact = new Contact (
+            FirstName = Nom,
+            LastName = Prenom,
+            Age__c = Age
+            );
+            //line added - waveoc
+            insert newContact;
+        
+        }
+
+}

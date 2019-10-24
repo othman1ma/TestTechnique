@@ -1,0 +1,82 @@
+<aura:component controller="NewContactController">
+    <aura:attribute name="contList" type="list[]"/>
+    <aura:attribute name="nom" type="string"/>
+    <aura:attribute name="prenom" type="string"/>
+    <aura:attribute name="titre" type="string"/>
+    <aura:attribute name="email" type="string"/>
+    <lightning:layout>
+        <lightning:layoutItem padding="around-small" size="6">
+    <div aria-labelledby="newform">
+        <fieldset class="slds-box slds-theme--default slds-container--small">
+         <form class="slds-form--stacked"> 
+            <div aura:id="FormParent"  class="slds-media__body slds-show" > 
+                 
+            <lightning:input aura:id="Nom" label="Nom"
+                             name="Nom"
+                             value=""/> 
+            <lightning:input aura:id="Prenom" label="Prénom"
+                             name="Prenom"
+                             value=""/>
+            <lightning:input aura:id="Titre" label="Titre"
+                             name="Titre"
+                             value=""/>
+            <lightning:input aura:id="Email" label="Email"
+                             name="Email"
+                             value=""/>
+            <lightning:button label="Suivant" 
+                              class="slds-m-top--medium"
+                              variant="brand"
+                              onclick="{!c.clickShow}"/>
+      </div>
+        <div aura:id="FormNombreenfant"  class="slds-media__body slds-hide" >
+             <lightning:select aura:id="Nombreenfant" label="Nombre D'enfant" name="Nombreenfant" onchange="{!c.NombreEnfantSelectionner}">
+                        <option value=""></option>
+                 		<option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </lightning:select> 
+            {!v.body}      
+            <lightning:button aura:id="clickshowlast"
+                              label="Suivant" 
+                              class="slds-m-top--medium slds-hide"
+                              variant="brand"
+                              onclick="{!c.clickshowlast}"/>
+		</div>
+             
+  		<div aura:id="Recapitulaif"  class="slds-media__body slds-hide" >
+            <p><b>Nom</b> :{!v.nom}</p>
+            <p><b>Prénom</b> :{!v.prenom}</p>
+            <p><b>Titre</b> :{!v.titre}</p>
+            <p><b>Email</b> :{!v.email}</p>
+            <br/><br/>
+            <table border="1">
+            
+            <tr>
+                <aura:iteration items="{!v.contList}" var="con">
+                    <td> {!con.FirstName}</td>
+ 				</aura:iteration>
+            </tr>
+            <tr>
+                <aura:iteration items="{!v.contList}" var="con">
+                    <td> {!con.LastName}</td>
+ 				</aura:iteration>
+            </tr>
+            <tr>
+                <aura:iteration items="{!v.contList}" var="con">
+                    <td> {!con.Age__c}</td>
+ 				</aura:iteration>
+            </tr>
+            </table>
+            <lightning:button label="Soumettre" 
+                              class="slds-m-top--medium"
+                              variant="brand"
+                              onclick="{!c.clickSave}"/>
+        </div>
+      </form>
+            
+
+      </fieldset>
+    </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>
